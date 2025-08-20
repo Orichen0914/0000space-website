@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Event - Event Space</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .private-event-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+        }
+
+        .content-section {
+            margin-bottom: 3rem;
+        }
+
+        .content-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .content-section p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #cccccc;
+        }
+
+        .intro-text {
+            font-style: italic;
+            color: #999999;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        .venue-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+
+        .spec-item {
+            background-color: #111111;
+            padding: 1.5rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .spec-number {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-label {
+            color: #cccccc;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .venue-section {
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid #333333;
+        }
+
+        .venue-name {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .venue-description {
+            color: #cccccc;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        /* Carousel Styles */
+        .carousel {
+            position: relative;
+            width: 100%;
+            margin: 2rem 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .carousel-inner {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            background-color: #111111;
+        }
+
+        .carousel-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .carousel-image.active {
+            opacity: 1;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 2.5rem;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            z-index: 2;
+            opacity: 0.7;
+        }
+
+        .carousel-btn:hover {
+            opacity: 1;
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+
+        .dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active,
+        .dot:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        .contact-form {
+            background-color: #111111;
+            padding: 3rem;
+            border-radius: 4px;
+            margin-top: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background-color: #000000;
+            border: 1px solid #333333;
+            border-radius: 4px;
+            color: #ffffff;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ffffff;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .submit-btn:hover {
+            background-color: #cccccc;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .venue-specs {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+        }
+
+        @media (max-width: 480px) {
+            .venue-specs {
+                grid-template-columns: 1fr;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Event Space Logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="private-event.html" class="nav-link">SPACE</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="gallery-link">GALLERY</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">CONTACT</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="private-event-content">
+            <div class="venue-section midnight-city">
+                <h2 class="venue-name">MIDNIGHT CITY</h2>
+                <div class="carousel" id="mnc-carousel">
+                    <div class="carousel-inner">
+                        <img src="images/space/mnc01.jpg" alt="Midnight City 1" class="carousel-image active">
+                        <img src="images/space/mnc02.jpg" alt="Midnight City 2" class="carousel-image">
+                        <img src="images/space/mnc03.jpg" alt="Midnight City 3" class="carousel-image">
+                    </div>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="currentSlide('mnc-carousel', 1)"></span>
+                        <span class="dot" onclick="currentSlide('mnc-carousel', 2)"></span>
+                        <span class="dot" onclick="currentSlide('mnc-carousel', 3)"></span>
+                    </div>
+                </div>
+                <p class="venue-description">Midnight City is the core space of 00:00, spanning approximately 5,500 square feet with a soaring 18-foot ceiling, purpose-built for large-scale events. The venue can accommodate up to 600 guests, and is equipped with a state-of-the-art sound system and panoramic LED screens, delivering a fully immersive audiovisual experience. Whether it's a DJ set, live performance, brand launch, or multimedia installation, Midnight City provides an ideal stage for unleashing creativity and energy.</p>
+                
+                <div class="venue-specs">
+                    <div class="spec-item">
+                        <span class="spec-number">600</span>
+                        <span class="spec-label">MAX CAPACITY</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-number">5,500</span>
+                        <span class="spec-label">SQ FT</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-number">18</span>
+                        <span class="spec-label">FT CEILINGS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="venue-section">
+                <h2 class="venue-name">LIMO</h2>
+                <div class="carousel" id="limo-carousel">
+                    <div class="carousel-inner">
+                        <img src="images/space/limo01.png" alt="LIMO 1" class="carousel-image active">
+                        <img src="images/space/limo02.png" alt="LIMO 2" class="carousel-image">
+                    </div>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="currentSlide('limo-carousel', 1)"></span>
+                        <span class="dot" onclick="currentSlide('limo-carousel', 2)"></span>
+                    </div>
+                </div>
+                <p class="venue-description">LIMO is an independent DJ room spanning 1,000 square feet, designed for intimate to mid-sized events. The space offers a cozy yet flexible atmosphere — ideal for private parties, art screenings, or themed salons. With its acoustic integrity and spatial privacy, LIMO is a perfect choice for curated gatherings and tight-knit community events.</p>
+                
+                <div class="venue-specs">
+                    <div class="spec-item">
+                        <span class="spec-number">80</span>
+                        <span class="spec-label">MAX CAPACITY</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-number">1,000</span>
+                        <span class="spec-label">SQ FT</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-number">DJ</span>
+                        <span class="spec-label">BOOTH</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <form class="contact-form">
+                <h2 style="margin-bottom: 2rem; text-align: center;">EVENT BOOKING</h2>
+                
+                <div class="form-group">
+                    <label for="name">NAME</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">EMAIL</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">PHONE</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event-date">EVENT DATE</label>
+                    <input type="text" id="event-date" name="event-date" placeholder="MM/DD/YYYY" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="guests">EXPECTED GUESTS</label>
+                    <input type="number" id="guests" name="guests" min="1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">EVENT DETAILS</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your event vision, requirements, and any special needs..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">SEND INQUIRY</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-title">00:00 – Immersive Nightlife in Long Island City</p>
+            <p class="footer-tagline">Where time stands still, and the night is yours.</p>
+            <p class="footer-copyright">© 2025 00:00. All rights reserved. | Privacy Policy | Terms & Conditions</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Carousel functionality
+        const carousels = {};
+
+        // Initialize carousels
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselElements = document.querySelectorAll('.carousel');
+            carouselElements.forEach(carousel => {
+                const id = carousel.id;
+                carousels[id] = {
+                    currentSlide: 1,
+                    totalSlides: carousel.querySelectorAll('.carousel-image').length
+                };
+                
+                // Auto-play carousel
+                if (carousels[id].totalSlides > 1) {
+                    setInterval(() => {
+                        changeSlide(id, 1);
+                    }, 3000); // Change slide every 3 seconds
+                }
+                
+                // Add swipe functionality
+                let touchStartX = 0;
+                let touchEndX = 0;
+                
+                carousel.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+                
+                carousel.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe(id);
+                }, false);
+                
+                function handleSwipe(carouselId) {
+                    if (touchEndX < touchStartX - 50) {
+                        // Swipe left - next slide
+                        changeSlide(carouselId, 1);
+                    }
+                    if (touchEndX > touchStartX + 50) {
+                        // Swipe right - previous slide
+                        changeSlide(carouselId, -1);
+                    }
+                }
+            });
+        });
+
+        function changeSlide(carouselId, direction) {
+            const carousel = carousels[carouselId];
+            if (!carousel || carousel.totalSlides <= 1) return;
+            
+            carousel.currentSlide += direction;
+            
+            if (carousel.currentSlide > carousel.totalSlides) {
+                carousel.currentSlide = 1;
+            } else if (carousel.currentSlide < 1) {
+                carousel.currentSlide = carousel.totalSlides;
+            }
+            
+            showSlide(carouselId, carousel.currentSlide);
+        }
+
+        function currentSlide(carouselId, slideNumber) {
+            const carousel = carousels[carouselId];
+            if (!carousel) return;
+            
+            carousel.currentSlide = slideNumber;
+            showSlide(carouselId, slideNumber);
+        }
+
+        function showSlide(carouselId, slideNumber) {
+            const carouselElement = document.getElementById(carouselId);
+            if (!carouselElement) return;
+            
+            const images = carouselElement.querySelectorAll('.carousel-image');
+            const dots = carouselElement.querySelectorAll('.dot');
+            
+            // Hide all images
+            images.forEach(img => img.classList.remove('active'));
+            
+            // Hide all dots
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Show current image
+            if (images[slideNumber - 1]) {
+                images[slideNumber - 1].classList.add('active');
+            }
+            
+            // Highlight current dot
+            if (dots[slideNumber - 1]) {
+                dots[slideNumber - 1].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

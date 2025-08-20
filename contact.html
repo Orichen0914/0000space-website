@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Event Space</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .contact-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 1rem;
+            min-height: 100px;
+            align-items: start;
+        }
+
+        .email-section {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .social-section {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            color: #ffffff;
+        }
+
+
+        .contact-email {
+            font-size: 1rem;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .contact-email a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .contact-email a:hover {
+            color: #cccccc;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            color: #ffffff;
+            font-size: 1.25rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+            padding: 0rem;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+            color: #cccccc;
+        }
+
+        .map-section {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 500px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .map-text {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+        }
+
+        .map-text:hover {
+            color: #cccccc;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .map-container:hover .map-overlay {
+            opacity: 1;
+        }
+
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                min-height: auto;
+            }
+
+            .section-title {
+                font-size: 1.25rem;
+            }
+
+            .contact-email {
+                font-size: 0.7rem;
+            }
+
+            .social-icon {
+                font-size: 1rem;
+                padding: 0.5rem;
+            }
+
+            .social-media {
+                gap: 1.5rem;
+            }
+
+            .map-container {
+                height: 350px;
+            }
+
+            .contact-content {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1rem;
+            }
+
+            .social-media {
+                gap: 1.5rem;
+            }
+
+            .social-icon {
+                font-size: 0.9rem;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="images/logo.png?v=2" alt="Event Space Logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="private-event.html" class="nav-link">SPACE</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="gallery-link">GALLERY</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">CONTACT</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="contact-content">
+            <div class="contact-grid">
+                <div class="email-section">
+                    <h1 class="section-title">EMAIL</h1>
+                    <div class="contact-email">
+                        <a href="mailto:info@0000space.com">info@0000space.com</a>
+                    </div>
+                </div>
+                
+                <div class="social-section">
+                    <h2 class="section-title">FOLLOW</h2>
+                    <div class="social-media">
+                        <a href="https://www.instagram.com/0000.nyc?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-icon" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@0000.nyc" target="_blank" class="social-icon" title="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@0000nyc" target="_blank" class="social-icon" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-section">
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.5506!2d-73.9449!3d40.7540!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25925c1e0f8c7%3A0x0!2s21-38%2044th%20Rd%2C%20Long%20Island%20City%2C%20NY%2011101!5e0!3m2!1sen!2sus!4v1234567890" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    <div class="map-overlay">
+                        <a href="https://maps.app.goo.gl/j5fc2rjpyPabcAFg9" target="_blank" class="map-text">CLICK FOR DIRECTIONS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-title">00:00 – Immersive Nightlife in Long Island City</p>
+            <p class="footer-tagline">Where time stands still, and the night is yours.</p>
+            <p class="footer-copyright">© 2025 00:00. All rights reserved. | Privacy Policy | Terms & Conditions</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

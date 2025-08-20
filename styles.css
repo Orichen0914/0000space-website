@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ========== 导航栏布局 ========== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #000000;
+    z-index: 1000;
+    padding: 1.5rem 0;           /* 导航栏上下内边距 - 调整这个值改变导航栏内部空间 */
+    border-bottom: 1px solid #333333;
+    height: 120px;                /* 导航栏总高度 - 需要配合logo高度调整 */
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+/* ========== Logo样式 ========== */
+.nav-logo {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-logo img {
+    height: 85px;                /* Logo高度 - 调整这个值改变logo大小 */
+    width: auto;                 /* 宽度自动，保持原始比例 */
+    display: block;
+    filter: brightness(0) invert(1);  /* 将黑色logo转换为白色 - 如果logo本身是白色可以删除这行 */
+    cursor: pointer;
+}
+
+/* ========== 导航菜单 ========== */
+.nav-menu {
+    position: fixed;
+    right: -300px;                /* 默认隐藏在右侧 */
+    top: 120px;                   /* 在导航栏下方 */
+    width: 250px;
+    background-color: #000000;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 2rem;
+    transition: right 0.3s ease;
+    border-left: 1px solid #333333;
+    height: calc(100vh - 120px);
+    z-index: 999;
+}
+
+.nav-menu.active {
+    right: 0;                     /* 展开时显示 */
+}
+
+/* ========== 导航项样式 ========== */
+.nav-item {
+    margin: 0.5rem 0;
+    list-style: none;
+}
+
+/* ========== 导航链接文字样式 ========== */
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;             /* 文字粗细 - 100-900，数字越大越粗 */
+    font-size: 1rem;              /* 导航文字大小 - 可以用px或rem单位 */
+    letter-spacing: 1px;          /* 字母间距 */
+    transition: color 0.3s ease;
+    display: block;
+    padding: 0.5rem 0;
+}
+
+.nav-link:hover {
+    color: #cccccc;
+}
+
+/* ========== 汉堡菜单按钮 ========== */
+.hamburger {
+    display: flex;                /* 始终显示 */
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* 汉堡菜单动画效果 */
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ========== 主内容区域 ========== */
+.main-content {
+    margin-top: 150px;            /* 距离顶部的距离 - 需要大于导航栏高度避免遮挡 */
+    padding: 2rem;
+}
+
+.upcoming-events {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 4rem;
+    letter-spacing: 2px;
+}
+
+/* ========== 活动卡片网格布局 ========== */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));  /* 自动响应式，每列最小260px */
+    gap: 40px;                    /* 卡片之间的间距 */
+    margin-bottom: 4rem;
+}
+
+/* ========== 活动卡片样式 ========== */
+.event-card {
+    position: relative;
+    overflow: hidden;
+    background-color: #111111;
+    border-radius: 12px;          /* 卡片圆角 */
+    aspect-ratio: 4 / 5;           /* 卡片宽高比 - 4:5 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 活动卡片悬停效果 */
+.event-card:hover {
+    transform: translateY(-5px);  /* 向上移动5px */
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);  /* 添加白色阴影 */
+}
+
+.event-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ========== 移动端响应式设计 (平板及以下) ========== */
+@media (max-width: 768px) {
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+
+    .main-content {
+        margin-top: 80px;
+        padding: 1rem;
+    }
+
+    .nav-container {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* ========== 页脚样式 ========== */
+.footer {
+    background-color: #000000;
+    border-top: 1px solid #333333;
+    padding: 3rem 2rem;
+    margin-top: 5rem;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-title {
+    color: #ffffff;
+    font-size: 0.9rem;            /* 标题文字大小 */
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.footer-tagline {
+    color: #cccccc;
+    font-size: 0.85rem;           /* 标语文字大小 */
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.footer-copyright {
+    color: #999999;
+    font-size: 0.75rem;           /* 版权文字大小 */
+    letter-spacing: 0.3px;
+}
+
+/* 移动端页脚调整 */
+@media (max-width: 768px) {
+    .footer {
+        padding: 2rem 1rem;
+    }
+    
+    .footer-title {
+        font-size: 0.85rem;
+    }
+    
+    .footer-tagline {
+        font-size: 0.8rem;
+    }
+    
+    .footer-copyright {
+        font-size: 0.7rem;
+    }
+}

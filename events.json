@@ -1,0 +1,60 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "image": "images/events/0814_0.jpg",
+      "date": "2025-08-14",
+      "visible": true,
+      "link": "https://posh.vip/e/barbie-lis-vip-client-appreciation-night"
+    },
+    {
+      "id": 2,
+      "image": "images/events/0814_1.jpg",
+      "date": "2025-08-14",
+      "visible": true,
+      "link": "https://posh.vip/e/0000-dj-set-360-thursday-3"
+    },
+    {
+      "id": 3,
+      "image": "images/events/0815.jpg",
+      "date": "2025-08-15",
+      "visible": true,
+      "link": "https://posh.vip/e/815"
+    },
+    {
+      "id": 4,
+      "image": "images/events/0816.jpg",
+      "date": "2025-08-16",
+      "visible": true,
+      "link": "https://posh.vip/e/0000-0816"
+    },
+    {
+      "id": 5,
+      "image": "images/events/0822_0.png",
+      "date": "2025-08-22",
+      "visible": true,
+      "link": "https://posh.vip/e/world-stage-2025"
+    },
+    {
+      "id": 6,
+      "image": "images/events/0822_1.jpg",
+      "date": "2025-08-22",
+      "visible": true,
+      "link": "https://posh.vip/e/0000-midnight-city-082225"
+    },
+    {
+      "id": 7,
+      "image": "images/events/0829.jpg",
+      "date": "2025-08-29",
+      "visible": true,
+      "link": "https://posh.vip/e/0000-midnight-city-082925"
+    },
+    {
+      "id": 8,
+      "image": "images/events/0830.jpg",
+      "date": "2025-08-30",
+      "visible": true,
+      "link": "https://posh.vip/e/0000-project-zero"
+    }
+  ]
+}
