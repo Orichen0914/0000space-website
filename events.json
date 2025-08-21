@@ -2,45 +2,45 @@
   "events": [
     {
       "id": 1,
+      "image": "images/events/0821.png",
+      "date": "2025-08-21",
+      "visible": true,
+      "link": "https://posh.vip/e/0000-reggaeton-long-island-city"
+    },
+    {
+      "id": 2,
       "image": "images/events/0822_0.png",
       "date": "2025-08-22",
       "visible": true,
       "link": "https://posh.vip/e/world-stage-2025"
     },
     {
-      "id": 2,
+      "id": 3,
       "image": "images/events/0822_1.jpg",
       "date": "2025-08-22",
       "visible": true,
       "link": "https://posh.vip/e/0000-midnight-city-082225"
     },
     {
-      "id": 3,
+      "id": 4,
       "image": "images/events/0823_0.jpg",
       "date": "2025-08-23",
       "visible": true,
       "link": "https://posh.vip/e/0000-midnight-sunset-rooftop-party"
     },
     {
-      "id": 4,
+      "id": 5,
       "image": "images/events/0823_1.jpg",
       "date": "2025-08-23",
       "visible": true,
       "link": "https://posh.vip/e/0000-the-sanctuary"
     },
     {
-      "id": 5,
+      "id": 6,
       "image": "images/events/0829.jpg",
       "date": "2025-08-29",
       "visible": true,
       "link": "https://posh.vip/e/0000-midnight-city-082925"
-    },
-    {
-      "id": 6,
-      "image": "images/events/0830.jpg",
-      "date": "2025-08-30",
-      "visible": true,
-      "link": "https://posh.vip/e/0000-project-zero"
     },
     {
       "id": 7,
@@ -48,13 +48,6 @@
       "date": "2025-09-05",
       "visible": true,
       "link": "https://posh.vip/e/0000-kpop-x-hiphop-night"
-    },
-    {
-      "id": 8,
-      "image": "images/events/placeholder.jpg",
-      "date": "2025-09-12",
-      "visible": false,
-      "link": "#"
     }
   ]
 }

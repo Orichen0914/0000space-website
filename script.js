@@ -123,12 +123,12 @@ async function loadEvents() {
         if (eventsGrid) {
             console.log('Loading fallback events...');
             const fallbackEvents = [
+                { image: "images/events/0821.png", link: "https://posh.vip/e/0000-reggaeton-long-island-city" },
                 { image: "images/events/0822_0.png", link: "https://posh.vip/e/world-stage-2025" },
                 { image: "images/events/0822_1.jpg", link: "https://posh.vip/e/0000-midnight-city-082225" },
                 { image: "images/events/0823_0.jpg", link: "https://posh.vip/e/0000-midnight-sunset-rooftop-party" },
                 { image: "images/events/0823_1.jpg", link: "https://posh.vip/e/0000-the-sanctuary" },
                 { image: "images/events/0829.jpg", link: "https://posh.vip/e/0000-midnight-city-082925" },
-                { image: "images/events/0830.jpg", link: "https://posh.vip/e/0000-project-zero" },
                 { image: "images/events/0905.jpg", link: "https://posh.vip/e/0000-kpop-x-hiphop-night" }
             ];
             
