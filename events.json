@@ -19,14 +19,14 @@
       "image": "images/events/0823_0.jpg",
       "date": "2025-08-23",
       "visible": true,
-      "link": "#"
+      "link": "https://posh.vip/e/0000-midnight-sunset-rooftop-party"
     },
     {
       "id": 4,
       "image": "images/events/0823_1.jpg",
       "date": "2025-08-23",
       "visible": true,
-      "link": "#"
+      "link": "https://posh.vip/e/0000-the-sanctuary"
     },
     {
       "id": 5,
@@ -47,6 +47,13 @@
       "image": "images/events/0905.jpg",
       "date": "2025-09-05",
       "visible": true,
+      "link": "https://posh.vip/e/0000-kpop-x-hiphop-night"
+    },
+    {
+      "id": 8,
+      "image": "images/events/placeholder.jpg",
+      "date": "2025-09-12",
+      "visible": false,
       "link": "#"
     }
   ]

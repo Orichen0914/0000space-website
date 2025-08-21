@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function loadEvents() {
     console.log('Loading events...');
     try {
-        const response = await fetch('events.json');
+        const response = await fetch('events.json?v=' + Date.now());
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -123,14 +123,13 @@ async function loadEvents() {
         if (eventsGrid) {
             console.log('Loading fallback events...');
             const fallbackEvents = [
-                { image: "images/events/0814_0.jpg" },
-                { image: "images/events/0814_1.jpg" },
-                { image: "images/events/0815.jpg" },
-                { image: "images/events/0816.jpg" },
-                { image: "images/events/0822_0.png" },
-                { image: "images/events/0822_1.jpg" },
-                { image: "images/events/0829.jpg" },
-                { image: "images/events/0830.jpg" }
+                { image: "images/events/0822_0.png", link: "https://posh.vip/e/world-stage-2025" },
+                { image: "images/events/0822_1.jpg", link: "https://posh.vip/e/0000-midnight-city-082225" },
+                { image: "images/events/0823_0.jpg", link: "https://posh.vip/e/0000-midnight-sunset-rooftop-party" },
+                { image: "images/events/0823_1.jpg", link: "https://posh.vip/e/0000-the-sanctuary" },
+                { image: "images/events/0829.jpg", link: "https://posh.vip/e/0000-midnight-city-082925" },
+                { image: "images/events/0830.jpg", link: "https://posh.vip/e/0000-project-zero" },
+                { image: "images/events/0905.jpg", link: "https://posh.vip/e/0000-kpop-x-hiphop-night" }
             ];
             
             eventsGrid.innerHTML = '';
