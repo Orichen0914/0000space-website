@@ -159,15 +159,23 @@ body {
 /* ========== 活动卡片样式 ========== */
 .event-card {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;  /* 图片和文字之间的间距 */
+}
+
+/* 图片容器 */
+.event-card-image-wrapper {
+    position: relative;
+    aspect-ratio: 4 / 5;           /* 保持图片宽高比 */
     overflow: hidden;
+    border-radius: 12px;           /* 整个图片圆角 */
     background-color: #111111;
-    border-radius: 12px;          /* 卡片圆角 */
-    aspect-ratio: 4 / 5;           /* 卡片宽高比 - 4:5 */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 活动卡片悬停效果 */
-.event-card:hover {
+/* 图片悬停效果 */
+.event-card-image-wrapper:hover {
     transform: translateY(-5px);  /* 向上移动5px */
     box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);  /* 添加白色阴影 */
 }
@@ -182,6 +190,38 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
+}
+
+/* 活动信息区域 */
+.event-info {
+    display: flex;
+    justify-content: space-between;  /* 左右两端对齐 */
+    align-items: center;
+    padding: 0 0.2rem;             /* 左右少量内边距 */
+    min-height: 30px;
+}
+
+/* 日期样式 */
+.event-date {
+    color: #999999;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;     /* 大写字母 */
+    white-space: nowrap;
+}
+
+/* 活动名称样式 */
+.event-name {
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;     /* 大写字母 */
+    text-align: right;             /* 文字右对齐 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* ========== 移动端响应式设计 (平板及以下) ========== */

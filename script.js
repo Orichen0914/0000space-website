@@ -123,13 +123,13 @@ async function loadEvents() {
         if (eventsGrid) {
             console.log('Loading fallback events...');
             const fallbackEvents = [
-                { image: "images/events/0821.png", link: "https://posh.vip/e/0000-reggaeton-long-island-city" },
-                { image: "images/events/0822_0.png", link: "https://posh.vip/e/world-stage-2025" },
-                { image: "images/events/0822_1.jpg", link: "https://posh.vip/e/0000-midnight-city-082225" },
-                { image: "images/events/0823_0.jpg", link: "https://posh.vip/e/0000-midnight-sunset-rooftop-party" },
-                { image: "images/events/0823_1.jpg", link: "https://posh.vip/e/0000-the-sanctuary" },
-                { image: "images/events/0829.jpg", link: "https://posh.vip/e/0000-midnight-city-082925" },
-                { image: "images/events/0905.jpg", link: "https://posh.vip/e/0000-kpop-x-hiphop-night" }
+                { image: "images/events/0821.png", date: "2025-08-21", name: "V5 Reggaeton", link: "https://posh.vip/e/0000-reggaeton-long-island-city" },
+                { image: "images/events/0822_0.png", date: "2025-08-22", name: "World Stage 2025", link: "https://posh.vip/e/world-stage-2025" },
+                { image: "images/events/0822_1.jpg", date: "2025-08-22", name: "Midnight City", link: "https://posh.vip/e/0000-midnight-city-082225" },
+                { image: "images/events/0823_0.jpg", date: "2025-08-23", name: "Sunset Rooftop Party", link: "https://posh.vip/e/0000-midnight-sunset-rooftop-party" },
+                { image: "images/events/0823_1.jpg", date: "2025-08-23", name: "Anime Rave NYC", link: "https://posh.vip/e/0000-the-sanctuary" },
+                { image: "images/events/0829.jpg", date: "2025-08-29", name: "Midnight City", link: "https://posh.vip/e/0000-midnight-city-082925" },
+                { image: "images/events/0905.jpg", date: "2025-09-05", name: "K-POP x Hip-Hop Night", link: "https://posh.vip/e/0000-kpop-x-hiphop-night" }
             ];
             
             eventsGrid.innerHTML = '';
@@ -148,46 +148,68 @@ function createEventCard(event) {
     const card = document.createElement('div');
     card.className = 'event-card';
     
+    // 创建图片容器
+    const imageWrapper = document.createElement('div');
+    imageWrapper.className = 'event-card-image-wrapper';
+    
+    // 创建图片元素
+    const img = document.createElement('img');
+    img.src = event.image;
+    img.alt = event.name || 'Event';
+    img.className = 'event-image';
+    
+    // Add debugging for image loading
+    img.onload = function() {
+        console.log('Image loaded successfully:', event.image);
+    };
+    img.onerror = function() {
+        console.error('Image failed to load:', event.image);
+    };
+    
+    // 格式化日期 (YYYY-MM-DD -> AUG 22)
+    const formatDate = (dateStr) => {
+        if (!dateStr) return '';
+        const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 
+                       'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+        const [year, month, day] = dateStr.split('-');
+        const monthName = months[parseInt(month) - 1];
+        return `${monthName} ${parseInt(day)}`;
+    };
+    
     // 如果有链接，创建<a>标签包裹图片
     if (event.link) {
         const link = document.createElement('a');
         link.href = event.link;
         link.target = '_blank';  // 在新标签页打开
         link.style.display = 'block';
-        link.style.height = '100%';
+        link.style.textDecoration = 'none';  // 移除下划线
         
-        const img = document.createElement('img');
-        img.src = event.image;
-        img.alt = 'Event';
-        img.className = 'event-image';
-        
-        // Add debugging for image loading
-        img.onload = function() {
-            console.log('Image loaded successfully:', event.image);
-        };
-        img.onerror = function() {
-            console.error('Image failed to load:', event.image);
-        };
-        
-        link.appendChild(img);
+        imageWrapper.appendChild(img);
+        link.appendChild(imageWrapper);
         card.appendChild(link);
     } else {
-        // 没有链接就只显示图片
-        const img = document.createElement('img');
-        img.src = event.image;
-        img.alt = 'Event';
-        img.className = 'event-image';
-        
-        // Add debugging for image loading
-        img.onload = function() {
-            console.log('Image loaded successfully:', event.image);
-        };
-        img.onerror = function() {
-            console.error('Image failed to load:', event.image);
-        };
-        
-        card.appendChild(img);
+        // 没有链接就直接添加图片
+        imageWrapper.appendChild(img);
+        card.appendChild(imageWrapper);
     }
+    
+    // 创建信息容器（独立于链接）
+    const infoContainer = document.createElement('div');
+    infoContainer.className = 'event-info';
+    
+    // 创建日期元素
+    const dateElement = document.createElement('span');
+    dateElement.className = 'event-date';
+    dateElement.textContent = formatDate(event.date);
+    
+    // 创建名称元素
+    const nameElement = document.createElement('span');
+    nameElement.className = 'event-name';
+    nameElement.textContent = event.name || '';
+    
+    infoContainer.appendChild(dateElement);
+    infoContainer.appendChild(nameElement);
+    card.appendChild(infoContainer);
     
     console.log('Card created with image src:', event.image);
     return card;

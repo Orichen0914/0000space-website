@@ -4,6 +4,7 @@
       "id": 1,
       "image": "images/events/0821.png",
       "date": "2025-08-21",
+      "name": "V5 Reggaeton",
       "visible": true,
       "link": "https://posh.vip/e/0000-reggaeton-long-island-city"
     },
@@ -11,6 +12,7 @@
       "id": 2,
       "image": "images/events/0822_0.png",
       "date": "2025-08-22",
+      "name": "World Stage 2025",
       "visible": true,
       "link": "https://posh.vip/e/world-stage-2025"
     },
@@ -18,6 +20,7 @@
       "id": 3,
       "image": "images/events/0822_1.jpg",
       "date": "2025-08-22",
+      "name": "Midnight City",
       "visible": true,
       "link": "https://posh.vip/e/0000-midnight-city-082225"
     },
@@ -25,6 +28,7 @@
       "id": 4,
       "image": "images/events/0823_0.jpg",
       "date": "2025-08-23",
+      "name": "Sunset Rooftop Party",
       "visible": true,
       "link": "https://posh.vip/e/0000-midnight-sunset-rooftop-party"
     },
@@ -32,6 +36,7 @@
       "id": 5,
       "image": "images/events/0823_1.jpg",
       "date": "2025-08-23",
+      "name": "Anime Rave NYC",
       "visible": true,
       "link": "https://posh.vip/e/0000-the-sanctuary"
     },
@@ -39,6 +44,7 @@
       "id": 6,
       "image": "images/events/0829.jpg",
       "date": "2025-08-29",
+      "name": "Midnight City",
       "visible": true,
       "link": "https://posh.vip/e/0000-midnight-city-082925"
     },
@@ -46,6 +52,7 @@
       "id": 7,
       "image": "images/events/0905.jpg",
       "date": "2025-09-05",
+      "name": "K-POP x Hip-Hop Night",
       "visible": true,
       "link": "https://posh.vip/e/0000-kpop-x-hiphop-night"
     }
