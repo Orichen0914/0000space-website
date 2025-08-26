@@ -2,7 +2,7 @@
   "events": [
     {
       "id": 1,
-      "image": "images/events/0828.png",
+      "image": "images/events/0828.jpg",
       "date": "2025-08-28",
       "name": "Qixi Festival",
       "visible": true,
@@ -10,7 +10,7 @@
     },
     {
       "id": 2,
-      "image": "images/events/0829.png",
+      "image": "images/events/0829.jpg",
       "date": "2025-08-29",
       "name": "MIDNIGHT CITY",
       "visible": true,
@@ -34,11 +34,11 @@
     },
     {
       "id": 5,
-      "image": "images/events/0913.jpg",
+      "image": "images/events/0913.png",
       "date": "2025-09-13",
       "name": "NYFW - STOON x PETIE",
       "visible": true,
       "link": "https://posh.vip/e/name-10"
-    },
+    }
   ]
 }
