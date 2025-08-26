@@ -84,18 +84,40 @@ document.addEventListener('DOMContentLoaded', function() {
 // Function to load events from JSON
 async function loadEvents() {
     console.log('Loading events...');
-    try {
-        const response = await fetch('events.json?v=' + Date.now());
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log('Events data loaded:', data);
+    
+    // Check for preview data first
+    const previewData = localStorage.getItem('preview_events');
+    let data;
+    
+    if (previewData) {
+        // Use preview data if available
+        data = JSON.parse(previewData);
+        console.log('Using preview events data:', data);
         
-        // Filter visible events and sort by date
-        const visibleEvents = data.events
-            .filter(event => event.visible)
-            .sort((a, b) => new Date(a.date) - new Date(b.date));
+        // Show preview indicator with close button
+        const previewIndicator = document.createElement('div');
+        previewIndicator.style.cssText = 'position: fixed; top: 10px; right: 10px; background: #3b82f6; color: white; padding: 10px 20px; border-radius: 5px; z-index: 10000; font-family: system-ui; display: flex; align-items: center; gap: 10px;';
+        previewIndicator.innerHTML = '👁️ Preview Mode <button onclick="localStorage.removeItem(\'preview_events\'); location.reload();" style="background: white; color: #3b82f6; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Exit Preview</button>';
+        document.body.appendChild(previewIndicator);
+    } else {
+        // Load from file normally
+        try {
+            const response = await fetch('events.json?v=' + Date.now());
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            data = await response.json();
+            console.log('Events data loaded:', data);
+        } catch (error) {
+            console.error('Error loading events:', error);
+            return;
+        }
+    }
+    
+    // Filter visible events and sort by date
+    const visibleEvents = data.events
+        .filter(event => event.visible)
+        .sort((a, b) => new Date(a.date) - new Date(b.date));
         
         console.log('Visible events:', visibleEvents.length);
         
@@ -115,11 +137,9 @@ async function loadEvents() {
             });
             
             console.log('All cards created');
-        }
-    } catch (error) {
-        console.error('Error loading events:', error);
-        // Fallback: create static event cards
-        const eventsGrid = document.querySelector('.events-grid');
+        } else {
+            // Fallback: create static event cards
+            const eventsGrid = document.querySelector('.events-grid');
         if (eventsGrid) {
             console.log('Loading fallback events...');
             const fallbackEvents = [
@@ -154,7 +174,8 @@ function createEventCard(event) {
     
     // 创建图片元素
     const img = document.createElement('img');
-    img.src = event.image;
+    // Use preview image if available (base64), otherwise use regular path
+    img.src = event.imagePreview || event.image;
     img.alt = event.name || 'Event';
     img.className = 'event-image';
     
