@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Admin - 0000space</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <h1 class="admin-title">0000 Event Manager</h1>
+                <button id="logoutBtn" class="admin-btn admin-btn-secondary">Logout</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Action Bar -->
+            <div class="admin-actions">
+                <button id="addEventBtn" class="admin-btn admin-btn-primary">
+                    + Add New Event
+                </button>
+                <button id="saveAllBtn" class="admin-btn admin-btn-success">
+                    Save & Publish
+                </button>
+            </div>
+
+            <!-- Events List -->
+            <div id="eventsList" class="admin-events-list">
+                <!-- Events will be loaded here -->
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="admin-loading">
+                Loading events...
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Event Modal -->
+    <div id="editModal" class="admin-modal">
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h2 id="modalTitle">Edit Event</h2>
+                <button class="admin-modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            
+            <form id="eventForm" class="admin-form">
+                <div class="admin-form-group">
+                    <label for="eventImage">Event Image</label>
+                    <div class="admin-image-upload">
+                        <input type="file" id="eventImageFile" accept="image/*" style="display:none">
+                        <div id="imagePreview" class="admin-image-preview">
+                            <img id="previewImg" src="" alt="">
+                            <div id="uploadPlaceholder" class="admin-upload-placeholder">
+                                Click to upload image
+                            </div>
+                        </div>
+                        <input type="hidden" id="eventImage" required>
+                    </div>
+                </div>
+
+                <div class="admin-form-row">
+                    <div class="admin-form-group">
+                        <label for="eventDate">Date</label>
+                        <input type="date" id="eventDate" class="admin-input" required>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="eventName">Event Name</label>
+                        <input type="text" id="eventName" class="admin-input" placeholder="e.g., V5 Reggaeton" required>
+                    </div>
+                </div>
+
+                <div class="admin-form-group">
+                    <label for="eventLink">Posh Link</label>
+                    <input type="url" id="eventLink" class="admin-input" placeholder="https://posh.vip/e/..." required>
+                </div>
+
+                <div class="admin-form-group">
+                    <label>
+                        <input type="checkbox" id="eventVisible" checked>
+                        Visible on website
+                    </label>
+                </div>
+
+                <div class="admin-modal-footer">
+                    <button type="button" class="admin-btn admin-btn-secondary" onclick="closeModal()">
+                        Cancel
+                    </button>
+                    <button type="submit" class="admin-btn admin-btn-primary">
+                        Save Event
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- GitHub Token Setup Modal -->
+    <div id="tokenModal" class="admin-modal">
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h2>GitHub Setup Required</h2>
+            </div>
+            
+            <div class="admin-modal-body">
+                <p>To manage events, you need to set up GitHub access:</p>
+                <ol>
+                    <li>Go to GitHub Settings → Developer settings → Personal access tokens</li>
+                    <li>Generate a new token with 'repo' scope</li>
+                    <li>Paste the token below</li>
+                </ol>
+                
+                <div class="admin-form-group">
+                    <label for="githubToken">GitHub Personal Access Token</label>
+                    <input type="password" id="githubToken" class="admin-input" placeholder="ghp_xxxxxxxxxxxx">
+                </div>
+
+                <div class="admin-form-group">
+                    <label for="githubRepo">Repository (owner/repo)</label>
+                    <input type="text" id="githubRepo" class="admin-input" value="Orichen0914/0000space-website" placeholder="owner/repo">
+                </div>
+                
+                <button onclick="saveGitHubConfig()" class="admin-btn admin-btn-primary">
+                    Save Configuration
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="admin-toast"></div>
+
+    <script src="admin.js"></script>
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/admin/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registered:', registration);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed:', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
