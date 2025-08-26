@@ -1,20 +1,5 @@
 # Netlify configuration file
 
-# Redirect /admin to /admin/index.html for cleaner URLs
-[[redirects]]
-  from = "/admin"
-  to = "/admin/index.html"
-  status = 200
-
-# Security headers for admin panel
-[[headers]]
-  for = "/admin/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    X-XSS-Protection = "1; mode=block"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-
 # Cache control for static assets
 [[headers]]
   for = "/*.css"
