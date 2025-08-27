@@ -39,6 +39,14 @@
       "name": "NYFW - STOON x PETIE",
       "visible": true,
       "link": "https://posh.vip/e/name-10"
+    },
+    {
+      "id": 6,
+      "image": "images/events/0926.png",
+      "date": "2025-09-26",
+      "name": "ARDENT NOIR HAUS",
+      "visible": true,
+      "link": "https://posh.vip/e/0000-ardent-noir-haus"
     }
   ]
 }
